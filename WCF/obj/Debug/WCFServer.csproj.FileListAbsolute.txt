@@ -1,0 +1,16 @@
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCF.exe.config
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCF.exe
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCF.pdb
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csprojAssemblyReference.cache
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\MainWindow.g.cs
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\App.g.cs
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF_MarkupCompile.cache
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF_MarkupCompile.lref
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\MainWindow.baml
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.g.resources
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.Properties.Resources.resources
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csproj.GenerateResource.cache
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csproj.CoreCompileInputs.cache
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.exe
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.pdb
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\GeneratedInternalTypeHelper.g.cs

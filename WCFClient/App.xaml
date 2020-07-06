@@ -1,0 +1,22 @@
+﻿<Application x:Class="WCFClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WCFClient"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="FalseST" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background"
+                    Value="Red"/>
+            <Setter Property="Content" Value="False"/>
+        </Style>
+        <Style x:Key="TrueST" TargetType="{x:Type ToggleButton}">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter  Property="Background"
+                    Value="Green"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Content" Value="True"/>
+        </Style>
+    </Application.Resources>
+</Application>

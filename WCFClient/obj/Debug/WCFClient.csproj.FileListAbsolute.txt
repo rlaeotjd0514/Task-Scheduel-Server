@@ -1,0 +1,17 @@
+C:\Users\dskim\source\repos\WCF\WCFClient\bin\Debug\WCFClient.exe.config
+C:\Users\dskim\source\repos\WCF\WCFClient\bin\Debug\WCFClient.exe
+C:\Users\dskim\source\repos\WCF\WCFClient\bin\Debug\WCFClient.pdb
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\MainWindow.g.cs
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\App.g.cs
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient_MarkupCompile.cache
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient_MarkupCompile.lref
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\MainWindow.baml
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.g.resources
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.Properties.Resources.resources
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.csproj.GenerateResource.cache
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.csproj.CoreCompileInputs.cache
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.exe
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.pdb
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\WCFClient.csprojAssemblyReference.cache
+C:\Users\dskim\source\repos\WCF\WCFClient\obj\Debug\App.baml
