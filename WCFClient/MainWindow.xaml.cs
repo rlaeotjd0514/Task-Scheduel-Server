@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.ServiceModel;
 using System.ComponentModel;
-using System.Globalization;
 
 namespace WCFClient
 {
@@ -23,10 +9,12 @@ namespace WCFClient
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        const string ServerAddr = "net.tcp://127.0.0.1:2345";
-        readonly int CUID;
-        private bool currentStatus = false;
+        public string title => string.Format("CUID::{0} Interval::{1}", CUID, Interval);
+        public static int CUID;
+        public static double Interval = 1.0f;
+
         public event PropertyChangedEventHandler PropertyChanged;
+        private bool currentStatus = false;
         public bool CurrentStatus
         {
             get
@@ -39,20 +27,28 @@ namespace WCFClient
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentStatus)));
             }
         }
-        Status status;
 
+        const string ServerAddr = "net.tcp://127.0.0.1:2345";
+        public static Status status;
+        ServiceHost host;
 
         public MainWindow()
         {
             InitializeComponent();
+            string address = "net.tcp://127.0.0.1:" + (6600).ToString();
+            NetTcpBinding ServerBind = new NetTcpBinding();
+            host = new ServiceHost(typeof(clientControl));
+            host.AddServiceEndpoint(typeof(ClientController), ServerBind, address);
+            host.Open();        
+
             ChannelFactory<Status> channelFactory = new ChannelFactory<Status>();
             channelFactory.Endpoint.Address = new EndpointAddress(ServerAddr);
             channelFactory.Endpoint.Binding = new NetTcpBinding();
             channelFactory.Endpoint.Contract.ContractType = typeof(Status);
             status = channelFactory.CreateChannel();
             CUID = status.AddClient();
-            this.Title = string.Format("CUID::{0}", CUID);
-            this.DataContext = this;
+
+            this.DataContext = this;            
         }
         
         private void StatusButton_Click(object sender, RoutedEventArgs e)
@@ -65,63 +61,9 @@ namespace WCFClient
         {
             status.DelClient(CUID);
         }
-    }
+    }    
 
-    public class ColorConverter : IValueConverter
-    {
-        public ColorConverter()
-        {
-
-        }
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if(targetType == typeof(Style) && value is bool)
-            {
-                if((bool)value)
-                {
-                    return Application.Current.Resources["TrueST"] as Style;
-                }
-                else
-                {
-                    return Application.Current.Resources["FalseST"] as Style;
-                }
-            }
-            return value;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class MainWindowViewModel : BasePropertyChanged
-    {
-        private bool currentstatus = false;
-        public bool CurrentStatus
-        {
-            get
-            {
-                return currentstatus;
-            }
-            set
-            {
-                currentstatus = value;
-                OnPropertyChanged(nameof(CurrentStatus));
-            }
-        }
-    }
-
-    [ServiceContract]
-    public interface Status
-    {
-        [OperationContract]
-        void ToggleStatus(int ClientNumber, bool Status);
-        [OperationContract]
-        int AddClient();
-        [OperationContract]
-        void DelClient(int ClientNumber);
-    }
+    
 
     public class BasePropertyChanged : INotifyPropertyChanged
     {

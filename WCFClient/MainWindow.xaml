@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WCFClient"        
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="250" Closing="Window_Closing" >
+        Title="{Binding title}" Height="150" Width="300" Closing="Window_Closing" >
     <Window.Resources>
         <local:ColorConverter x:Key="BoolToColorCode"/>
     </Window.Resources>

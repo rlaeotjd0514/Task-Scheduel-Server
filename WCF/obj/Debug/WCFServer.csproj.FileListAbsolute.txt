@@ -13,4 +13,7 @@ C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csproj.GenerateResource.
 C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csproj.CoreCompileInputs.cache
 C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.exe
 C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCF.pdb
-C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCFClient.exe
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCFClient.pdb
+C:\Users\dskim\source\repos\WCF\WCF\bin\Debug\WCFClient.exe.config
+C:\Users\dskim\source\repos\WCF\WCF\obj\Debug\WCFServer.csproj.CopyComplete

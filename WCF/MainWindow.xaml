@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WCF"
         mc:Ignorable="d"        
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="450" Width="1000">
     <DockPanel>
-        <ListView Name="ClientListBox" ItemsSource="{Binding CSD}">
+        <ListView Name="ClientListBox" ItemsSource="{Binding CSD}" BorderThickness="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ClienNo" Width="50" DisplayMemberBinding="{Binding ClientNumber}"/>
@@ -15,5 +15,32 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Name="Test" Content="Test" Click="Test_Click"></Button>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=CUI}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Height="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Path=CUID}" FontSize="24" Grid.Row="0"/>
+                                <TextBlock Text="{Binding Path=CpuUsage}" FontSize="24" Grid.Row="1"/>
+                                <TextBlock Text="{Binding Path=MemoryUsage}" FontSize="24" Grid.Row="2"/>
+                                <ItemsControl>
+                                    
+                                </ItemsControl>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>        
     </DockPanel>
 </Window>
