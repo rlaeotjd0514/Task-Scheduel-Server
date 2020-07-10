@@ -16,7 +16,7 @@ namespace WCF
     {
         const int MaxConnectionLimit = 256;
         public static Dictionary<int, bool> ClientUsage;
-        public static Dictionary<int, ChannelFactory<ClientController>> ClientPipe;
+        public static Dictionary<int, ClientController> ClientPipe;
         public static Dictionary<int, ComputeUsageInfo> ClientComputeUsage;
         private static int max = -1;
         public ClientStatus()
@@ -27,7 +27,7 @@ namespace WCF
             }
             if(ClientPipe == null)
             {
-                ClientPipe = new Dictionary<int, ChannelFactory<ClientController>>();
+                ClientPipe = new Dictionary<int, ClientController>();
             }
             if(ClientComputeUsage == null)
             {
@@ -69,8 +69,11 @@ namespace WCF
             ChannelFactory<ClientController> channelFactory = new ChannelFactory<ClientController>();
             channelFactory.Endpoint.Address = new EndpointAddress(remoteUri);
             channelFactory.Endpoint.Binding = new NetTcpBinding();
-            channelFactory.Endpoint.Contract.ContractType = typeof(ClientController);
-            ClientPipe.Add(cur, channelFactory);            
+            channelFactory.Endpoint.Contract.ContractType = typeof(ClientController);            
+            ClientPipe.Add(cur, channelFactory.CreateChannel());
+
+            MainWindow.CurrentViewModelObject.CUI.Add(new ComputeUsageInfo());
+            ClientComputeUsage.Add(cur, new ComputeUsageInfo());
             return cur;
         }
         void Status.DelClient(int ClientNumber)
@@ -118,6 +121,8 @@ namespace WCF
     [DataContract(Namespace = "ComputeResource")]
     public class ComputeUsageInfo
     {
+        [DataMember]
+        public double Interval = 1000;
         [DataMember]
         public int CUID { get; set; }
         [DataMember]

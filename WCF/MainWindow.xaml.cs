@@ -11,8 +11,10 @@ namespace WCF
     public partial class MainWindow : Window
     {
         ServiceHost host;
-        public static MainWindowViewModel CurrentViewModelObject = new MainWindowViewModel();        
-        
+        public static MainWindowViewModel CurrentViewModelObject = new MainWindowViewModel();
+        public static int SelectedCUID;
+        public static double SelectedInterval;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,9 +36,7 @@ namespace WCF
         private void Test_Click(object sender, RoutedEventArgs e)
         {
             //test
-            var tester = ClientStatus.ClientPipe[0].CreateChannel();
-            tester.SetCycle(1000.0);
-            tester.Start();
+            
             //test
         }
         private void IntervalBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -46,12 +46,24 @@ namespace WCF
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var parent = (sender as Button).Parent;            
+            var tester = ClientStatus.ClientPipe[SelectedCUID];
+            tester.SetCycle(SelectedInterval);
+            tester.Start();
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
+            var tester = ClientStatus.ClientPipe[SelectedCUID];
+            tester.Stop();
+        }
 
+        private void Border_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var Grid = sender as Grid;
+            TextBox interval = Grid.FindName("IntervalBox") as TextBox;            
+            TextBlock CUID = Grid.FindName("UID") as TextBlock;
+            SelectedInterval = double.Parse(interval.Text) * 1000;
+            SelectedCUID = int.Parse(CUID.Text);
         }
     }
 

@@ -27,7 +27,7 @@ namespace WCFClient
             var stat = timer.Enabled;
             timer.Enabled = false;
             timer.Interval = (int)priod;
-            MainWindow.Interval = priod;
+            MainWindow.CurrentInstance.title = string.Format("CUID::{0} Interval::{1}", MainWindow.CUID, MainWindow.CurrentInstance.Interval);
             timer.Enabled = stat;            
         }
 
@@ -43,15 +43,13 @@ namespace WCFClient
 
         public void SendSystemInformation(object sender, EventArgs e)
         {
-            //new Task((Action)(() => {
-            //    ComputeUsageInfo CUI = new ComputeResourceAnalyzer().GetComputeInformation();
-            //    MainWindow.status.SendSystemInformation(CUI);
-            //})).Start();       
-            ComputeUsageInfo CUI = new ComputeResourceAnalyzer().GetComputeInformation();
-            MainWindow.status.SendSystemInformation(CUI.CUID, CUI.CpuUsage, CUI.MemoryUsage, CUI.Drives, CUI);
-        }
-
-       
+            new Task((Action)(() =>
+            {
+                ComputeUsageInfo CUI = new ComputeResourceAnalyzer().GetComputeInformation();
+                MainWindow.status.SendSystemInformation(CUI.CUID, CUI.CpuUsage, CUI.MemoryUsage, CUI.Drives, CUI);
+            })).Start();
+            
+        }       
     }    
 
     [ServiceContract]

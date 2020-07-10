@@ -9,9 +9,34 @@ namespace WCFClient
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public string title => string.Format("CUID::{0} Interval::{1}", CUID, Interval);
+        public static MainWindow CurrentInstance;
+        private string _title;
+        public string title
+        {
+            get
+            {
+                return string.Format("CUID::{0} Interval::{1}", CUID, Interval);
+            }
+            set
+            {
+                _title = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Interval)));
+            }
+        }        
         public static int CUID;
-        public static double Interval = 1.0f;
+        private static double interval = 1.0f;
+        public double Interval
+        {
+            get
+            {
+                return interval;
+            }
+            set
+            {
+                interval = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Interval)));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private bool currentStatus = false;
@@ -35,6 +60,9 @@ namespace WCFClient
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+            CurrentInstance = this;
+            
             string address = "net.tcp://127.0.0.1:" + (6600).ToString();
             NetTcpBinding ServerBind = new NetTcpBinding();
             host = new ServiceHost(typeof(clientControl));
@@ -48,7 +76,6 @@ namespace WCFClient
             status = channelFactory.CreateChannel();
             CUID = status.AddClient();
 
-            this.DataContext = this;            
         }
         
         private void StatusButton_Click(object sender, RoutedEventArgs e)
@@ -67,15 +94,13 @@ namespace WCFClient
 
     public class BasePropertyChanged : INotifyPropertyChanged
     {
-        #region 속성 
-
+        #region 속성
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string Name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(Name));
         }
-
         #endregion
     }
 }
